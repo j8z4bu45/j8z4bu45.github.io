@@ -1,0 +1,2093 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>酒城宾馆 | 城市记忆影像 | 温暖陪伴每一程</title>
+<meta name="description" content="酒城宾馆官方网站，以城市记忆影像社区形态呈现，记录旅宿日常、在地文化与创作者故事，打造值得信赖的品质内容生态。">
+<style>
+:root{
+  --bg:#f4f1ea;
+  --ink:#241f1a;
+  --ink-soft:#5c5348;
+  --amber:#b5732a;
+  --amber-deep:#8a4f16;
+  --amber-light:#f0e2cd;
+  --cream:#fffaf2;
+  --line:#e0d6c4;
+  --shadow:0 18px 40px -22px rgba(60,40,15,.45);
+  --radius:18px;
+  --nav-h:56px;
+  --notice-h:44px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + var(--notice-h) + 12px)}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+/* ===== 公告条 ===== */
+.notice-bar{
+  position:fixed;top:0;left:0;right:0;z-index:110;
+  height:var(--notice-h);
+  background:linear-gradient(90deg,var(--amber-deep),var(--amber));
+  color:#fff8ec;
+  display:flex;align-items:center;
+  font-size:13px;
+  overflow:hidden;
+}
+.notice-inner{
+  display:flex;align-items:center;gap:14px;
+  max-width:1240px;margin:0 auto;padding:0 22px;
+  width:100%;
+}
+.notice-label{
+  flex:none;font-weight:700;letter-spacing:.1em;
+  background:rgba(255,255,255,.18);
+  padding:2px 10px;border-radius:20px;font-size:12px;
+}
+.notice-track{overflow:hidden;flex:1;white-space:nowrap}
+.notice-track span{display:inline-block;padding-right:60px;animation:noticeScroll 26s linear infinite}
+@keyframes noticeScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ===== 页头 ===== */
+.site-header{
+  position:fixed;top:var(--notice-h);left:0;right:0;z-index:100;
+  height:var(--nav-h);
+  background:rgba(255,250,242,.9);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav-wrap{
+  max-width:1240px;margin:0 auto;padding:0 22px;
+  height:100%;display:flex;align-items:center;gap:20px;
+}
+.logo{
+  display:flex;align-items:center;gap:10px;
+  font-weight:800;font-size:17px;letter-spacing:.04em;
+  flex:none;
+}
+.logo-mark{
+  width:32px;height:32px;border-radius:9px;
+  background:radial-gradient(circle at 30% 25%,#e7a95d,var(--amber-deep));
+  display:grid;place-items:center;color:#fff;font-size:15px;
+  box-shadow:0 6px 14px -6px rgba(138,79,22,.8);
+}
+.main-nav{margin-left:auto}
+.main-nav ul{display:flex;align-items:center;gap:4px}
+.main-nav a{
+  padding:8px 13px;border-radius:9px;font-size:14px;color:var(--ink-soft);
+  transition:.22s;
+}
+.main-nav a:hover{background:var(--amber-light);color:var(--amber-deep)}
+.nav-tools{display:flex;align-items:center;gap:10px;flex:none}
+.search-box{
+  display:flex;align-items:center;gap:6px;
+  background:#fff;border:1px solid var(--line);
+  border-radius:22px;padding:5px 6px 5px 14px;
+  transition:.25s;
+}
+.search-box:focus-within{border-color:var(--amber);box-shadow:0 0 0 3px rgba(181,115,42,.14)}
+.search-box input{
+  border:none;outline:none;background:none;font-size:13px;width:140px;color:var(--ink);
+}
+.search-box input::placeholder{color:#a99a86}
+.search-btn{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--amber);color:#fff;display:grid;place-items:center;
+  font-size:13px;transition:.2s;
+}
+.search-btn:hover{background:var(--amber-deep)}
+.btn-submit-top{
+  padding:8px 16px;border-radius:22px;font-size:13px;font-weight:600;
+  background:var(--ink);color:var(--cream);transition:.22s;white-space:nowrap;
+}
+.btn-submit-top:hover{background:var(--amber-deep)}
+.menu-toggle{
+  display:none;width:38px;height:38px;border-radius:10px;
+  border:1px solid var(--line);background:#fff;
+  place-items:center;font-size:17px;color:var(--ink-soft);
+}
+.search-feedback{
+  position:absolute;top:calc(var(--nav-h) + var(--notice-h) + 6px);
+  right:22px;background:var(--ink);color:var(--cream);
+  font-size:13px;padding:9px 16px;border-radius:10px;
+  opacity:0;transform:translateY(-6px);pointer-events:none;transition:.25s;z-index:130;
+}
+.search-feedback.show{opacity:1;transform:translateY(0)}
+
+/* ===== 首屏 ===== */
+.hero{
+  padding:calc(var(--nav-h) + var(--notice-h) + 52px) 22px 68px;
+  max-width:1240px;margin:0 auto;
+  display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12.5px;letter-spacing:.18em;color:var(--amber-deep);
+  font-weight:700;background:var(--amber-light);
+  padding:6px 14px;border-radius:20px;margin-bottom:20px;
+}
+.hero h1{
+  font-size:clamp(34px,4.6vw,54px);
+  line-height:1.18;font-weight:850;letter-spacing:-.01em;
+  margin-bottom:18px;
+}
+.hero h1 em{
+  font-style:normal;
+  background:linear-gradient(100deg,var(--amber),var(--amber-deep));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-lead{
+  font-size:15px;color:var(--ink-soft);max-width:520px;margin-bottom:26px;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px}
+.btn-primary{
+  padding:13px 30px;border-radius:30px;font-weight:700;font-size:14.5px;
+  background:linear-gradient(120deg,var(--amber),var(--amber-deep));
+  color:#fff;box-shadow:0 14px 26px -14px rgba(138,79,22,.9);
+  transition:.24s;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 30px -14px rgba(138,79,22,.95)}
+.btn-ghost{
+  padding:13px 28px;border-radius:30px;font-weight:600;font-size:14.5px;
+  border:1.5px solid var(--line);color:var(--ink-soft);background:#fff;transition:.24s;
+}
+.btn-ghost:hover{border-color:var(--amber);color:var(--amber-deep)}
+.hero-stats{
+  display:flex;gap:38px;flex-wrap:wrap;
+  border-top:1px solid var(--line);padding-top:22px;
+}
+.hero-stats b{display:block;font-size:26px;font-weight:800;color:var(--amber-deep);letter-spacing:-.02em}
+.hero-stats span{font-size:12.5px;color:var(--ink-soft);letter-spacing:.05em}
+.hero-visual{position:relative}
+.hero-frame{
+  border-radius:26px;overflow:hidden;box-shadow:var(--shadow);
+  border:1px solid rgba(181,115,42,.18);
+}
+.hero-frame svg{width:100%;height:auto;aspect-ratio:4/3}
+.hero-badge{
+  position:absolute;left:-16px;bottom:26px;
+  background:var(--cream);border:1px solid var(--line);
+  border-radius:16px;padding:13px 18px;box-shadow:var(--shadow);
+  display:flex;align-items:center;gap:11px;max-width:250px;
+}
+.hero-badge .dot{
+  width:9px;height:9px;border-radius:50%;background:#2fa46a;
+  box-shadow:0 0 0 4px rgba(47,164,106,.16);flex:none;
+}
+.hero-badge p{font-size:12.5px;color:var(--ink-soft);line-height:1.5}
+.hero-badge b{color:var(--ink)}
+
+/* ===== 通用 section ===== */
+.section{max-width:1240px;margin:0 auto;padding:64px 22px}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:34px;flex-wrap:wrap}
+.section-head h2{
+  font-size:clamp(24px,2.6vw,31px);font-weight:820;letter-spacing:-.01em;
+}
+.section-head h2 span{color:var(--amber)}
+.section-head p{font-size:14px;color:var(--ink-soft);max-width:480px;margin-top:8px}
+.sec-tag{
+  font-size:12px;letter-spacing:.16em;color:var(--amber-deep);font-weight:700;margin-bottom:8px;
+}
+.link-more{
+  font-size:13.5px;color:var(--amber-deep);font-weight:600;white-space:nowrap;
+  border-bottom:1px solid transparent;transition:.2s;
+}
+.link-more:hover{border-color:var(--amber-deep)}
+
+/* ===== 焦点内容 ===== */
+.focus-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:22px}
+.focus-main{
+  border-radius:var(--radius);overflow:hidden;background:var(--cream);
+  border:1px solid var(--line);box-shadow:var(--shadow);
+  display:flex;flex-direction:column;
+}
+.cover{position:relative;overflow:hidden;background:#2c2318}
+.cover svg{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.card:hover .cover svg,.focus-main:hover .cover svg{transform:scale(1.04)}
+.cover-tag{
+  position:absolute;top:12px;left:12px;z-index:2;
+  font-size:11.5px;font-weight:700;letter-spacing:.06em;
+  background:rgba(255,250,242,.92);color:var(--amber-deep);
+  padding:4px 11px;border-radius:14px;
+}
+.play-mark{
+  position:absolute;right:12px;bottom:12px;z-index:2;
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(36,31,26,.62);backdrop-filter:blur(4px);
+  display:grid;place-items:center;color:#fff;
+  border:1px solid rgba(255,255,255,.35);transition:.24s;
+}
+.play-mark::after{
+  content:"";border-style:solid;border-width:7px 0 7px 11px;
+  border-color:transparent transparent transparent #fff;margin-left:3px;
+}
+.card:hover .play-mark,.focus-main:hover .play-mark{background:var(--amber);transform:scale(1.06)}
+.focus-main .cover{aspect-ratio:16/9}
+.focus-body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.focus-body h3{font-size:20px;font-weight:780;line-height:1.45}
+.focus-body p{font-size:13.5px;color:var(--ink-soft)}
+.meta-row{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  font-size:12.5px;color:#8b7d6a;margin-top:auto;padding-top:12px;
+  border-top:1px dashed var(--line);
+}
+.meta-row .author{display:flex;align-items:center;gap:7px;color:var(--ink-soft);font-weight:600}
+.avatar{
+  width:24px;height:24px;border-radius:50%;flex:none;
+  display:grid;place-items:center;font-size:11px;font-weight:700;color:#fff;
+  background:linear-gradient(135deg,#c98a3f,#8a4f16);
+}
+.avatar.v2{background:linear-gradient(135deg,#5b7f6a,#2f5340)}
+.avatar.v3{background:linear-gradient(135deg,#8a6bb0,#4d3573)}
+.avatar.v4{background:linear-gradient(135deg,#c46a5a,#8d3a2c)}
+.avatar.v5{background:linear-gradient(135deg,#4f7fa8,#2c5170)}
+.avatar.v6{background:linear-gradient(135deg,#b8893a,#7a5313)}
+.focus-side{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.mini-card{
+  background:var(--cream);border:1px solid var(--line);border-radius:14px;
+  overflow:hidden;display:flex;flex-direction:column;transition:.26s;
+}
+.mini-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.mini-card .cover{aspect-ratio:16/9}
+.mini-card .mini-body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.mini-card h4{font-size:13.5px;font-weight:700;line-height:1.45}
+.mini-card .mini-meta{font-size:11.5px;color:#8b7d6a;margin-top:auto;display:flex;justify-content:space-between;align-items:center}
+
+/* ===== 视频流 ===== */
+.filter-row{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:28px}
+.chip{
+  font-size:13px;padding:7px 17px;border-radius:20px;
+  border:1px solid var(--line);background:#fff;color:var(--ink-soft);
+  transition:.2s;
+}
+.chip:hover{border-color:var(--amber);color:var(--amber-deep)}
+.chip.active{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{
+  background:var(--cream);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;display:flex;flex-direction:column;transition:.28s;
+}
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:#d9c9ad}
+.card .cover{aspect-ratio:16/9}
+.card-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:9px;flex:1}
+.card-body h3{font-size:15.5px;font-weight:750;line-height:1.48}
+.card-body p{font-size:12.8px;color:var(--ink-soft);line-height:1.65}
+.tag-row{display:flex;gap:6px;flex-wrap:wrap}
+.tag{
+  font-size:11px;padding:2px 9px;border-radius:10px;
+  background:var(--amber-light);color:var(--amber-deep);font-weight:600;
+}
+.tag.alt{background:#e5ece5;color:#3f6347}
+.tag.alt2{background:#e6e9f2;color:#465078}
+.tag.alt3{background:#f3e6e2;color:#8a4437}
+.card-foot{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-top:auto;padding-top:11px;border-top:1px dashed var(--line);
+}
+.card-foot .who{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-soft);font-weight:600}
+.actions{display:flex;align-items:center;gap:4px}
+.act{
+  display:flex;align-items:center;gap:4px;font-size:12px;color:#8b7d6a;
+  padding:4px 8px;border-radius:8px;transition:.2s;
+}
+.act:hover{background:var(--amber-light);color:var(--amber-deep)}
+.act.liked{color:#c0392b;font-weight:700}
+.act.saved{color:var(--amber-deep);font-weight:700}
+.act .ico{font-size:13px;line-height:1}
+
+/* ===== 专题 ===== */
+.topic-section{background:linear-gradient(180deg,#fbf6ec,#f4f1ea);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.topic-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.topic-card{
+  position:relative;border-radius:var(--radius);overflow:hidden;
+  aspect-ratio:4/3;display:flex;align-items:flex-end;
+  border:1px solid rgba(138,79,22,.16);
+}
+.topic-card svg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .55s}
+.topic-card:hover svg{transform:scale(1.06)}
+.topic-card .veil{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(30,20,8,.05) 30%,rgba(30,20,8,.86));
+}
+.topic-info{position:relative;z-index:2;padding:20px 22px;color:#fff}
+.topic-info .status{
+  display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;
+  background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.38);
+  padding:2px 10px;border-radius:12px;margin-bottom:9px;
+}
+.topic-info h3{font-size:17.5px;font-weight:780;margin-bottom:6px;line-height:1.4}
+.topic-info p{font-size:12.5px;color:rgba(255,250,242,.82);line-height:1.6}
+.topic-info .count{font-size:11.5px;color:rgba(255,250,242,.64);margin-top:9px;display:block}
+
+/* ===== 创作者 ===== */
+.creator-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.creator-card{
+  background:var(--cream);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px 20px;text-align:center;transition:.28s;cursor:pointer;
+}
+.creator-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:#d9c9ad}
+.creator-card .big-avatar{
+  width:66px;height:66px;border-radius:20px;margin:0 auto 14px;
+  display:grid;place-items:center;font-size:24px;font-weight:800;color:#fff;
+  box-shadow:0 12px 22px -14px rgba(60,40,15,.7);
+}
+.creator-card h3{font-size:15.5px;font-weight:750;margin-bottom:4px}
+.creator-card .field{font-size:12px;color:var(--amber-deep);font-weight:600;letter-spacing:.03em;margin-bottom:10px}
+.creator-card p{font-size:12.3px;color:var(--ink-soft);line-height:1.65;min-height:60px}
+.creator-stats{
+  display:flex;justify-content:center;gap:18px;margin-top:14px;padding-top:13px;
+  border-top:1px dashed var(--line);font-size:11.5px;color:#8b7d6a;
+}
+.creator-stats b{display:block;font-size:14px;color:var(--ink);font-weight:800}
+
+/* ===== 故事区 ===== */
+.story-section{background:#fbf6ec;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.story-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.story-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px 24px;display:flex;flex-direction:column;gap:12px;transition:.26s;
+}
+.story-card:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.story-card .quote{font-size:34px;line-height:1;color:var(--amber);opacity:.5;font-family:Georgia,serif}
+.story-card h3{font-size:16px;font-weight:760;line-height:1.5}
+.story-card p{font-size:13.2px;color:var(--ink-soft);line-height:1.8}
+.story-card .by{font-size:12px;color:#8b7d6a;margin-top:6px}
+
+/* ===== 影像墙 ===== */
+.wall{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:110px;gap:14px}
+.wall-item{
+  position:relative;border-radius:14px;overflow:hidden;
+  border:1px solid rgba(138,79,22,.15);
+}
+.wall-item svg{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.wall-item:hover svg{transform:scale(1.07)}
+.wall-item .cap{
+  position:absolute;left:0;right:0;bottom:0;padding:19px 13px 10px;
+  background:linear-gradient(180deg,transparent,rgba(28,19,8,.85));
+  color:#fff;font-size:11.8px;font-weight:600;letter-spacing:.02em;
+}
+.w-a{grid-column:span 3;grid-row:span 2}
+.w-b{grid-column:span 3;grid-row:span 1}
+.w-c{grid-column:span 1;grid-row:span 1}
+.w-d{grid-column:span 2;grid-row:span 1}
+.w-e{grid-column:span 2;grid-row:span 2}
+.w-f{grid-column:span 1;grid-row:span 1}
+.w-g{grid-column:span 3;grid-row:span 1}
+
+/* ===== 用户评价 ===== */
+.review-section{background:linear-gradient(180deg,#f4f1ea,#fbf6ec)}
+.review-grid{columns:3;column-gap:20px}
+.review{
+  break-inside:avoid;margin-bottom:20px;
+  background:#fff;border:1px solid var(--line);border-radius:16px;
+  padding:20px 20px 18px;transition:.24s;
+}
+.review:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.review .stars{font-size:12px;color:var(--amber);letter-spacing:2px;margin-bottom:9px}
+.review p{font-size:13.2px;color:var(--ink-soft);line-height:1.8}
+.review .rv-foot{
+  display:flex;align-items:center;gap:9px;margin-top:14px;padding-top:12px;
+  border-top:1px dashed var(--line);font-size:12px;color:#8b7d6a;
+}
+.review .rv-foot b{color:var(--ink);font-weight:700}
+
+/* ===== 动态 + 合作 ===== */
+.dual-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:26px;align-items:start}
+.news-list{display:flex;flex-direction:column;gap:0}
+.news-item{
+  padding:18px 4px;border-bottom:1px solid var(--line);
+  display:flex;gap:18px;align-items:baseline;transition:.2s;
+}
+.news-item:hover{padding-left:10px}
+.news-item .date{
+  flex:none;font-size:12px;font-weight:700;color:var(--amber-deep);
+  letter-spacing:.03em;width:74px;font-variant-numeric:tabular-nums;
+}
+.news-item h3{font-size:14.5px;font-weight:700;margin-bottom:3px;line-height:1.5}
+.news-item p{font-size:12.4px;color:var(--ink-soft);line-height:1.65}
+.partner-box{
+  background:var(--ink);color:var(--cream);border-radius:var(--radius);
+  padding:30px 26px;
+}
+.partner-box h3{font-size:18px;font-weight:780;margin-bottom:8px}
+.partner-box > p{font-size:13px;color:rgba(255,250,242,.66);margin-bottom:20px;line-height:1.7}
+.partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.partner{
+  border:1px solid rgba(255,250,242,.18);border-radius:11px;
+  padding:13px 12px;font-size:12.5px;font-weight:600;letter-spacing:.03em;
+  display:flex;align-items:center;gap:9px;transition:.22s;
+}
+.partner:hover{background:rgba(255,250,242,.08);border-color:rgba(231,169,93,.6)}
+.partner .pd{
+  width:8px;height:8px;border-radius:2px;flex:none;
+  background:var(--amber);
+}
+.partner .pd.g{background:#5b8f6f}
+.partner .pd.b{background:#6b83b2}
+.partner .pd.r{background:#b56b5a}
+
+/* ===== FAQ ===== */
+.faq-list{display:grid;grid-template-columns:1fr 1fr;gap:12px 26px}
+details{
+  background:#fff;border:1px solid var(--line);border-radius:13px;
+  padding:0 20px;transition:.22s;
+}
+details[open]{border-color:#d9c9ad;box-shadow:0 10px 24px -18px rgba(60,40,15,.5)}
+summary{
+  list-style:none;cursor:pointer;padding:16px 26px 16px 0;
+  font-size:14px;font-weight:700;position:relative;line-height:1.55;
+}
+summary::-webkit-details-marker{display:none}
+summary::after{
+  content:"+";position:absolute;right:0;top:50%;transform:translateY(-50%);
+  font-size:19px;font-weight:400;color:var(--amber);transition:.24s;
+}
+details[open] summary::after{content:"−"}
+details p{font-size:13px;color:var(--ink-soft);padding-bottom:17px;line-height:1.8}
+
+/* ===== 联系/投稿 ===== */
+.cta-section{padding-bottom:84px}
+.cta-box{
+  background:linear-gradient(120deg,#2a211培训,#3a2c1c);
+  background:linear-gradient(120deg,#2c2217,#45331f);
+  border-radius:26px;padding:52px 46px;color:var(--cream);
+  display:grid;grid-template-columns:1.2fr 1fr;gap:44px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.cta-box::before{
+  content:"";position:absolute;right:-90px;top:-90px;width:320px;height:320px;
+  border-radius:50%;background:radial-gradient(circle,rgba(231,169,93,.28),transparent 68%);
+}
+.cta-box h2{font-size:clamp(23px,2.6vw,30px);font-weight:820;margin-bottom:12px;line-height:1.35}
+.cta-box p{font-size:13.8px;color:rgba(255,250,242,.72);line-height:1.8}
+.cta-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.btn-light{
+  padding:12px 28px;border-radius:28px;background:var(--cream);color:var(--ink);
+  font-weight:700;font-size:14px;transition:.22s;
+}
+.btn-light:hover{background:var(--amber-light);transform:translateY(-2px)}
+.btn-outline{
+  padding:12px 26px;border-radius:28px;border:1.5px solid rgba(255,250,242,.35);
+  color:var(--cream);font-weight:600;font-size:14px;transition:.22s;
+}
+.btn-outline:hover{border-color:var(--amber);color:#f3c88c}
+.contact-list{display:flex;flex-direction:column;gap:14px;position:relative;z-index:2}
+.contact-row{
+  display:flex;gap:14px;align-items:flex-start;
+  padding-bottom:14px;border-bottom:1px solid rgba(255,250,242,.13);
+}
+.contact-row:last-child{border-bottom:none;padding-bottom:0}
+.contact-row .ci{
+  width:36px;height:36px;border-radius:10px;flex:none;
+  background:rgba(255,250,242,.1);display:grid;place-items:center;font-size:15px;
+}
+.contact-row b{display:block;font-size:13px;font-weight:700;margin-bottom:2px}
+.contact-row span{font-size:12.5px;color:rgba(255,250,242,.62);line-height:1.6}
+
+/* ===== 页脚 ===== */
+.site-footer{
+  border-top:1px solid var(--line);background:#efe9de;
+  padding:52px 22px 34px;
+}
+.foot-wrap{max-width:1240px;margin:0 auto}
+.foot-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px;margin-bottom:38px}
+.foot-brand p{font-size:12.8px;color:var(--ink-soft);line-height:1.85;margin-top:14px;max-width:330px}
+.foot-col h4{font-size:13px;font-weight:780;margin-bottom:14px;letter-spacing:.05em}
+.foot-col ul li{margin-bottom:9px}
+.foot-col a{font-size:12.8px;color:var(--ink-soft);transition:.2s}
+.foot-col a:hover{color:var(--amber-deep)}
+.foot-bottom{
+  border-top:1px solid var(--line);padding-top:22px;
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-size:12.2px;color:#8b7d6a;
+}
+.foot-bottom .lhs{display:flex;gap:18px;flex-wrap:wrap}
+
+/* ===== 弹窗 / Toast ===== */
+.modal-mask{
+  position:fixed;inset:0;z-index:200;background:rgba(30,22,12,.55);
+  backdrop-filter:blur(4px);display:grid;place-items:center;padding:22px;
+  opacity:0;pointer-events:none;transition:.26s;
+}
+.modal-mask.open{opacity:1;pointer-events:auto}
+.modal{
+  background:var(--cream);border-radius:22px;width:100%;max-width:470px;
+  padding:30px 30px 26px;box-shadow:0 40px 80px -30px rgba(0,0,0,.5);
+  transform:translateY(14px) scale(.98);transition:.28s;max-height:88vh;overflow:auto;
+}
+.modal-mask.open .modal{transform:translateY(0) scale(1)}
+.modal h3{font-size:19px;font-weight:800;margin-bottom:6px}
+.modal > p.sub{font-size:13px;color:var(--ink-soft);margin-bottom:20px;line-height:1.7}
+.field{margin-bottom:15px}
+.field label{display:block;font-size:12.5px;font-weight:700;margin-bottom:6px;color:var(--ink-soft)}
+.field input,.field textarea{
+  width:100%;border:1px solid var(--line);background:#fff;border-radius:11px;
+  padding:11px 14px;font-size:13.5px;font-family:inherit;color:var(--ink);
+  outline:none;transition:.2s;resize:vertical;
+}
+.field input:focus,.field textarea:focus{border-color:var(--amber);box-shadow:0 0 0 3px rgba(181,115,42,.13)}
+.modal-actions{display:flex;gap:10px;margin-top:20px}
+.modal-actions button{flex:1;padding:12px;border-radius:12px;font-size:14px;font-weight:700;transition:.22s}
+.m-cancel{background:#eee6d8;color:var(--ink-soft)}
+.m-cancel:hover{background:#e3d8c5}
+.m-ok{background:linear-gradient(120deg,var(--amber),var(--amber-deep));color:#fff}
+.m-ok:hover{filter:brightness(1.07)}
+.share-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0 6px}
+.share-item{
+  border:1px solid var(--line);border-radius:12px;padding:14px 6px;
+  text-align:center;font-size:12px;font-weight:600;color:var(--ink-soft);
+  background:#fff;transition:.2s;
+}
+.share-item:hover{border-color:var(--amber);color:var(--amber-deep);transform:translateY(-2px)}
+.share-item .si{display:block;font-size:20px;margin-bottom:5px}
+.copy-line{
+  display:flex;gap:8px;margin-top:16px;background:#f4ecdd;border:1px dashed var(--line);
+  border-radius:11px;padding:7px 7px 7px 14px;align-items:center;
+}
+.copy-line input{
+  flex:1;border:none;background:none;outline:none;font-size:12.5px;color:var(--ink-soft);
+}
+.copy-btn{
+  flex:none;padding:7px 15px;border-radius:8px;font-size:12px;font-weight:700;
+  background:var(--ink);color:var(--cream);transition:.2s;
+}
+.copy-btn:hover{background:var(--amber-deep)}
+.toast{
+  position:fixed;left:50%;bottom:42px;transform:translate(-50%,18px);
+  background:rgba(36,31,26,.94);color:var(--cream);
+  padding:12px 24px;border-radius:30px;font-size:13.5px;font-weight:600;
+  z-index:300;opacity:0;pointer-events:none;transition:.3s;
+  box-shadow:0 18px 36px -18px rgba(0,0,0,.6);white-space:nowrap;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.to-top{
+  position:fixed;right:22px;bottom:26px;z-index:90;
+  width:44px;height:44px;border-radius:14px;
+  background:var(--cream);border:1px solid var(--line);
+  display:grid;place-items:center;font-size:16px;color:var(--ink-soft);
+  box-shadow:var(--shadow);opacity:0;pointer-events:none;transform:translateY(10px);
+  transition:.3s;
+}
+.to-top.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+.to-top:hover{color:var(--amber-deep);border-color:var(--amber)}
+
+/* ===== 响应式 ===== */
+@media(max-width:1024px){
+  .hero{grid-template-columns:1fr;gap:38px;padding-top:calc(var(--nav-h) + var(--notice-h) + 40px)}
+  .hero-lead{max-width:none}
+  .focus-grid{grid-template-columns:1fr}
+  .video-grid{grid-template-columns:repeat(2,1fr)}
+  .topic-grid{grid-template-columns:1fr 1fr}
+  .creator-grid{grid-template-columns:1fr 1fr}
+  .story-grid{grid-template-columns:1fr 1fr}
+  .review-grid{columns:2}
+  .dual-grid{grid-template-columns:1fr}
+  .faq-list{grid-template-columns:1fr}
+  .cta-box{grid-template-columns:1fr;gap:32px;padding:40px 30px}
+  .foot-top{grid-template-columns:1fr 1fr}
+  .wall{grid-template-columns:repeat(4,1fr);grid-auto-rows:96px}
+  .w-e{grid-column:span 2;grid-row:span 2}
+}
+@media(max-width:760px){
+  .main-nav{
+    position:fixed;top:calc(var(--nav-h) + var(--notice-h));left:0;right:0;
+    background:var(--cream);border-bottom:1px solid var(--line);
+    padding:12px 18px 18px;box-shadow:var(--shadow);
+    transform:translateY(-130%);opacity:0;pointer-events:none;transition:.3s;
+  }
+  .main-nav.open{transform:translateY(0);opacity:1;pointer-events:auto}
+  .main-nav ul{flex-direction:column;align-items:stretch;gap:2px}
+  .main-nav a{display:block;padding:11px 12px;font-size:14.5px}
+  .menu-toggle{display:grid}
+  .search-box input{width:96px}
+  .btn-submit-top{display:none}
+  .video-grid{grid-template-columns:1fr}
+  .topic-grid{grid-template-columns:1fr}
+  .creator-grid{grid-template-columns:1fr 1fr}
+  .story-grid{grid-template-columns:1fr}
+  .review-grid{columns:1}
+  .wall{grid-template-columns:repeat(2,1fr);grid-auto-rows:106px}
+  .w-a{grid-column:span 2;grid-row:span 2}
+  .w-b,.w-d,.w-e,.w-g{grid-column:span 2;grid-row:span 1}
+  .w-c,.w-f{grid-column:span 1;grid-row:span 1}
+  .hero-stats{gap:24px}
+  .hero-badge{left:0;bottom:-14px}
+  .cta-box{padding:34px 22px}
+  .foot-top{grid-template-columns:1fr;gap:26px}
+  .section{padding:48px 18px}
+  .hero{padding-left:18px;padding-right:18px}
+  .focus-side{grid-template-columns:1fr 1fr}
+  .share-row{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:420px){
+  .focus-side{grid-template-columns:1fr}
+  .creator-grid{grid-template-columns:1fr}
+  .search-box{display:none}
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<!-- 公告条 -->
+<div class="notice-bar">
+  <div class="notice-inner">
+    <span class="notice-label">官方发布</span>
+    <div class="notice-track">
+      <span>「酒城宾馆·夜航影像计划」第二季开放报名　·　新增「老城房间故事」专题 6 支原创短片　·　5 月创作者扶持名单公示，12 位作者入选　·　企业动态：酒城宾馆影像体验中心完成第三期空间升级　·　「来客故事」征集通道持续开放，欢迎上传　·　</span>
+      <span>「酒城宾馆·夜航影像计划」第二季开放报名　·　新增「老城房间故事」专题 6 支原创短片　·　5 月创作者扶持名单公示，12 位作者入选　·　企业动态：酒城宾馆影像体验中心完成第三期空间升级　·　「来客故事」征集通道持续开放，欢迎上传　·　</span>
+    </div>
+  </div>
+</div>
+
+<!-- 页头 -->
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="logo" href="#top" aria-label="酒城宾馆官方网站首页">
+      <span class="logo-mark">酒</span>
+      <span>酒城宾馆</span>
+    </a>
+    <nav class="main-nav" id="mainNav">
+      <ul>
+        <li><a href="#focus">焦点影像</a></li>
+        <li><a href="#videos">视频内容</a></li>
+        <li><a href="#topics">专题企划</a></li>
+        <li><a href="#creators">创作者</a></li>
+        <li><a href="#stories">旅宿随笔</a></li>
+        <li><a href="#news">企业动态</a></li>
+        <li><a href="#faq">帮助</a></li>
+        <li><a href="#contact">联系</a></li>
+      </ul>
+    </nav>
+    <div class="nav-tools">
+      <div class="search-box">
+        <input id="searchInput" type="search" placeholder="搜索影像 / 创作者" aria-label="站内搜索">
+        <button class="search-btn" id="searchBtn" aria-label="搜索">搜</button>
+      </div>
+      <button class="btn-submit-top" data-modal="submitModal">我要投稿</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="展开导航" aria-expanded="false">☰</button>
+    </div>
+    <div class="search-feedback" id="searchFeedback">请输入关键词后再搜索</div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 首屏 -->
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="hero-eyebrow">酒城宾馆 · 官方网站</span>
+      <h1>酒城宾馆：<em>把每一间房</em>拍成一段可回看的人生</h1>
+      <p class="hero-lead">酒城宾馆官方网站，以城市记忆影像社区的形态持续运营。我们记录旅宿日常、在地文化与创作者的镜头语言，用真实、温暖、有质感的原创短片，搭建一个值得信赖的内容生态，让每一次停留都有被看见的可能。</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#videos">浏览原创影像</a>
+        <a class="btn-ghost" href="#creators">认识创作者</a>
+        <button class="btn-ghost" data-modal="submitModal">投稿你的故事</button>
+      </div>
+      <div class="hero-stats">
+        <div><b data-count="1286">0</b><span>原创影像作品</span></div>
+        <div><b data-count="342">0</b><span>合作创作者</span></div>
+        <div><b data-count="86">0</b><span>城市故事专题</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-frame">
+        <svg viewBox="0 0 800 600" role="img" aria-label="酒城宾馆夜色中的老楼立面与暖黄窗光">
+          <defs>
+            <linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1d2438"/>
+              <stop offset="55%" stop-color="#3b3247"/>
+              <stop offset="100%" stop-color="#6b4a37"/>
+            </linearGradient>
+            <linearGradient id="wall1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#8d6a4c"/>
+              <stop offset="100%" stop-color="#5b4432"/>
+            </linearGradient>
+            <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ffcf80" stop-opacity=".95"/>
+              <stop offset="100%" stop-color="#ffcf80" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="800" height="600" fill="url(#sky1)"/>
+          <circle cx="640" cy="110" r="150" fill="url(#glow1)" opacity=".35"/>
+          <circle cx="640" cy="110" r="42" fill="#ffe0a8" opacity=".9"/>
+          <g fill="#2a2233" opacity=".85">
+            <rect x="0" y="330" width="150" height="270"/>
+            <rect x="640" y="300" width="160" height="300"/>
+          </g>
+          <rect x="150" y="200" width="470" height="400" fill="url(#wall1)"/>
+          <rect x="150" y="200" width="470" height="26" fill="#3f2f22"/>
+          <g fill="#ffd08a">
+            <rect x="188" y="256" width="62" height="76" rx="3"/>
+            <rect x="278" y="256" width="62" height="76" rx="3"/>
+            <rect x="368" y="256" width="62" height="76" rx="3" opacity=".45"/>
+            <rect x="458" y="256" width="62" height="76" rx="3"/>
+            <rect x="188" y="368" width="62" height="76" rx="3" opacity=".55"/>
+            <rect x="278" y="368" width="62" height="76" rx="3"/>
+            <rect x="368" y="368" width="62" height="76" rx="3"/>
+            <rect x="458" y="368" width="62" height="76" rx="3" opacity=".7"/>
+            <rect x="188" y="480" width="62" height="76" rx="3"/>
+            <rect x="278" y="480" width="62" height="76" rx="3" opacity=".6"/>
+            <rect x="458" y="480" width="62" height="76" rx="3"/>
+          </g>
+          <g fill="#2a1f16" opacity=".75">
+            <rect x="368" y="480" width="62" height="76" rx="3"/>
+            <rect x="368" y="256" width="62" height="76" rx="3"/>
+          </g>
+          <rect x="300" y="530" width="80" height="70" fill="#2a1f16"/>
+          <circle cx="366" cy="566" r="3.4" fill="#ffd08a"/>
+          <rect x="126" y="586" width="540" height="14" fill="#2a1f16"/>
+          <rect x="504" y="150" width="16" height="60" fill="#4a3728"/>
+          <rect x="470" y="120" width="88" height="34" rx="6" fill="#c98a3f"/>
+          <text x="514" y="143" font-size="19" fill="#2a1f16" text-anchor="middle" font-family="sans-serif" font-weight="bold">酒城</text>
+        </svg>
+      </div>
+      <div class="hero-badge">
+        <span class="dot"></span>
+        <p><b>夜航影像计划</b><br>本季 24 位创作者已入驻房间拍摄</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 焦点影像 -->
+  <section class="section" id="focus">
+    <div class="section-head">
+      <div>
+        <div class="sec-tag">FEATURED · 焦点影像</div>
+        <h2>本月被反复回看的<span>四支原创短片</span></h2>
+        <p>由内容编辑部与在地创作者共同选送，覆盖旅宿日常、城市探索与人物访谈三个方向。</p>
+      </div>
+      <a class="link-more" href="#videos">查看全部影像 →</a>
+    </div>
+    <div class="focus-grid">
+      <article class="focus-main card">
+        <div class="cover">
+          <span class="cover-tag">编辑推荐</span>
+          <svg viewBox="0 0 800 450" role="img" aria-label="清晨六点的酒城宾馆走廊，光从百叶窗落在地砖上">
+            <defs>
+              <linearGradient id="fc1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#f3e3c6"/>
+                <stop offset="100%" stop-color="#c9a372"/>
+              </linearGradient>
+            </defs>
+            <rect width="800" height="450" fill="url(#fc1)"/>
+            <rect x="0" y="300" width="800" height="150" fill="#a8825a"/>
+            <g stroke="#8c6a45" stroke-width="3" opacity=".5">
+              <line x1="0" y1="340" x2="800" y2="340"/>
+              <line x1="0" y1="382" x2="800" y2="382"/>
+              <line x1="0" y1="424" x2="800" y2="424"/>
+              <line x1="120" y1="300" x2="70" y2="450"/>
+              <line x1="340" y1="300" x2="310" y2="450"/>
+              <line x1="560" y1="300" x2="600" y2="450"/>
+            </g>
+            <g fill="#fff6e2" opacity=".92">
+              <polygon points="90,60 210,60 300,300 130,300"/>
+              <polygon points="240,60 360,60 460,300 300,300"/>
+              <polygon points="400,60 520,60 620,300 470,300"/>
+            </g>
+            <rect x="60" y="52" width="500" height="14" rx="4" fill="#6f543a"/>
+            <rect x="620" y="120" width="140" height="180" rx="8" fill="#4a3728"/>
+            <circle cx="690" cy="212" r="6" fill="#e7b877"/>
+            <rect x="40" y="300" width="26" height="150" fill="#6f543a"/>
+          </svg>
+          <span class="play-mark" aria-hidden="true"></span>
+        </div>
+        <div class="focus-body">
+          <h3>清晨六点的走廊：一间老宾馆如何被光线重新讲述</h3>
+          <p>摄制组在酒城宾馆三层连拍三十天，只记录天亮前的那一个半小时。百叶窗把光切成条纹，地砖上的旧划痕被唤醒，客房服务员推车经过的声响成了全片唯一的配乐。这是一支关于「缓慢」的影像，也是一次对日常劳动的真挚致意。</p>
+          <div class="meta-row">
+            <span class="author"><span class="avatar">林</span>林间取景</span>
+            <span>12:38</span>
+            <span>·</span>
+            <span>1.8 万次回看</span>
+            <span>·</span>
+            <span>城市探索</span>
+          </div>
+        </div>
+      </article>
+      <div class="focus-side">
+        <article class="mini-card">
+          <div class="cover">
+            <svg viewBox="0 0 400 225" role="img" aria-label="前台老式铜铃与登记簿的特写封面">
+              <rect width="400" height="225" fill="#3d2f24"/>
+              <circle cx="140" cy="140" r="46" fill="#c9a05a"/>
+              <circle cx="140" cy="140" r="34" fill="#e0bb7c"/>
+              <rect x="132" y="88" width="16" height="52" fill="#8a6a34"/>
+              <rect x="210" y="112" width="140" height="96" rx="6" fill="#f0e6d2"/>
+              <g stroke="#9b8a6e" stroke-width="2">
+                <line x1="226" y1="140" x2="334" y2="140"/>
+                <line x1="226" y1="160" x2="334" y2="160"/>
+                <line x1="226" y1="180" x2="296" y2="180"/>
+              </g>
+            </svg>
+            <span class="cover-tag">日常记录</span>
+            <span class="play-mark" aria-hidden="true"></span>
+          </div>
+          <div class="mini-body">
+            <h4>一枚铜铃的四十年：前台登记簿里的来客</h4>
+            <div class="mini-meta"><span>周掌柜说</span><span>08:12</span></div>
+          </div>
+        </article>
+        <article class="mini-card">
+          <div class="cover">
+            <svg viewBox="0 0 400 225" role="img" aria-label="窗边茶席与街景剪影的影像封面">
+              <rect width="400" height="225" fill="#d8dde0"/>
+              <rect x="0" y="150" width="400" height="75" fill="#7c8a8f"/>
+              <g fill="#606f75">
+                <rect x="24" y="96" width="46" height="54"/>
+                <rect x="86" y="76" width="38" height="74"/>
+                <rect x="140" y="104" width="52" height="46"/>
+                <rect x="300" y="88" width="44" height="62"/>
+                <rect x="352" y="110" width="34" height="40"/>
+              </g>
+              <rect x="0" y="150" width="400" height="8" fill="#5a686d"/>
+              <ellipse cx="200" cy="196" rx="78" ry="12" fill="#4d5b60" opacity=".5"/>
+              <rect x="176" y="160" width="48" height="30" rx="5" fill="#e8dfcd"/>
+              <path d="M176 172 q-16 2 -16 12 q0 10 16 8" fill="none" stroke="#e8dfcd" stroke-width="6"/>
+              <path d="M200 160 q6 -22 20 -30" stroke="#9fb0b3" stroke-width="4" fill="none" opacity=".8"/>
+            </svg>
+            <span class="cover-tag">在地文化</span>
+            <span class="play-mark" aria-hidden="true"></span>
+          </div>
+          <div class="mini-body">
+            <h4>从窗台望出去：一条老街的三种营业时间</h4>
+            <div class="mini-meta"><span>阿梨放映室</span><span>15:04</span></div>
+          </div>
+        </article>
+        <article class="mini-card">
+          <div class="cover">
+            <svg viewBox="0 0 400 225" role="img" aria-label="两位创作者在房间内对谈的影像封面">
+              <rect width="400" height="225" fill="#40342c"/>
+              <rect x="0" y="168" width="400" height="57" fill="#2c231d"/>
+              <circle cx="132" cy="104" r="26" fill="#c58f5e"/>
+              <path d="M96 168 q36 -54 72 0" fill="#8a6440"/>
+              <circle cx="268" cy="112" r="23" fill="#a8744a"/>
+              <path d="M236 168 q32 -48 64 0" fill="#6e4d33"/>
+              <rect x="176" y="126" width="48" height="34" rx="4" fill="#e6d3b4"/>
+              <g stroke="#998570" stroke-width="2" opacity=".7">
+                <line x1="160" y1="60" x2="240" y2="60"/>
+                <line x1="180" y1="74" x2="230" y2="74"/>
+              </g>
+            </svg>
+            <span class="cover-tag">人物访谈</span>
+            <span class="play-mark" aria-hidden="true"></span>
+          </div>
+          <div class="mini-body">
+            <h4>对谈：拍了十年旅宿的人，怎么理解「回家」</h4>
+            <div class="mini-meta"><span>影像研究所</span><span>21:47</span></div>
+          </div>
+        </article>
+        <article class="mini-card">
+          <div class="cover">
+            <svg viewBox="0 0 400 225" role="img" aria-label="雨天窗面水痕与室内暖灯的影像封面">
+              <rect width="400" height="225" fill="#37444d"/>
+              <g stroke="#7d94a0" stroke-width="2" opacity=".7">
+                <line x1="60" y1="20" x2="48" y2="120"/>
+                <line x1="122" y1="14" x2="116" y2="150"/>
+                <line x1="196" y1="30" x2="188" y2="132"/>
+                <line x1="264" y1="16" x2="272" y2="142"/>
+                <line x1="330" y1="26" x2="322" y2="118"/>
+              </g>
+              <circle cx="150" cy="178" r="34" fill="#f0c479" opacity=".55"/>
+              <circle cx="270" cy="188" r="24" fill="#e0a95c" opacity=".45"/>
+              <rect x="0" y="200" width="400" height="25" fill="#26323a"/>
+            </svg>
+            <span class="cover-tag">治愈影像</span>
+            <span class="play-mark" aria-hidden="true"></span>
+          </div>
+          <div class="mini-body">
+            <h4>下雨天不出门：房间里的六件小事</h4>
+            <div class="mini-meta"><span>慢来客</span><span>11:26</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 视频流 -->
+  <section class="section" id="videos" style="padding-top:20px">
+    <div class="section-head">
+      <div>
+        <div class="sec-tag">VIDEOS · 视频内容</div>
+        <h2>社区持续更新的<span>精品内容</span></h2>
+        <p>横跨旅宿体验、在地风味与创作幕后的九支影像，每一支都附带创作者的拍摄手记。</p>
+      </div>
+      <button class="link-more" data-modal="submitModal">我也要投稿 →</button>
+    </div>
+    <div class="filter-row" id="filterRow">
+      <button class="chip active" data-filter="all">全部内容</button>
+      <button class="chip" data-filter="日常记录">日常记录</button>
+      <button class="chip" data-filter="城市探索">城市探索</button>
+      <button class="chip" data-filter="人物访谈">人物访谈</button>
+      <button class="chip" data-filter="创作幕后">创作幕后</button>
+      <button class="chip" data-filter="美食烹饪">美食烹饪</button>
+    </div>
+    <div class="video-grid" id="videoGrid">
+
+      <article class="card" data-cat="日常记录">
+        <div class="cover">
+          <span class="cover-tag">日常记录</span>
+          <svg viewBox="0 0 400 225" role="img" aria-label="客房铺床过程俯拍，白色床单与木质床架">
+            <rect width="400" height="225" fill="#c8b49a"/>
+            <rect x="52" y="42" width="296" height="150" rx="10" fill="#f6f1e6"/>
+            <rect x="52" y="42" width="296" height="34" rx="8" fill="#e6dcc9"/>
+            <rect x="86" y="88" width="120" height="64" rx="12" fill="#fffdf8"/>
+            <rect x="222" y="88" width="96" height="64" rx="12" fill="#f0e7d6"/>
+            <g stroke="#cdbfa8" stroke-width="2" opacity=".8">
+              <line x1="60" y1="176" x2="340" y2="176"/>
+              <line x1="60" y1="186" x2="340" y2="186"/>
+            </g>
+          </svg>
+          <span class="play-mark" aria-hidden="true"></span>
+        </div>
+        <div class="card-body">
+          <h3>一百八十秒铺好一间房：客房班组的标准动作</h3>
+          <p>跟拍客房班组一个上午，拆解铺床、收纳、检查的十二个动作节点，也记录下她们口中「客人一进门的那声叹气」。</p>
+          <div class="tag-row"><span class="tag">实用技巧</span><span class="tag alt">旅宿日常</span></div>
+          <div class="card-foot">
+            <span class="who"><span class="avatar v2">陈</span>陈师傅手记</span>
+            <div class="actions">
+              <button class="act" data-act="like"><span class="ico">♡</span><span class="num">862</span></button>
+              <button class="act" data-act="save"><span class="ico">☆</span><span>收藏</span></button>
+              <button class="act" data-act="comment"><span class="ico">✎</span><span>评论</span></button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-cat="城市探索">
+        <div class="cover">
+          <span class="cover-tag">城市探索</span>
+          <svg viewBox="0 0 400 225" role="img" aria-label="夜色中的酒城老街石板路与红灯笼">
+            <rect width="400" height="225" fill="#1f2735"/>
+            <rect x="0" y="150" width="400" height="75" fill="#2c3747"/>
+            <g fill="#39455a">
+              <rect x="12" y="70" width="64" height="80"/>
+              <rect x="88" y="52" width="52" height="98"/>
+              <rect x="270" y="64" width="58" height="86"/>
+              <rect x="340" y="82" width="50" height="68"/>
+            </g>
+            <g fill="#f5c06a">
+              <rect x="26" y="88" width="14" height="16"/>
+              <rect x="52" y="116" width="14" height="16"/>
+              <rect x="104" y="76" width="12" height="14"/>
+              <rect x="290" y="98" width="14" height="16"/>
+              <rect x="354" y="106" width="12" height="14"/>
+            </g>
+            <circle cx="200" cy="70" r="15" fill="#d9503c"/>
+            <circle cx="200" cy="72" r="9" fill="#f08a5e" opacity=".85"/>
+            <line x1="200" y1="40" x2="200" y2="56" stroke="#5a4a3a" stroke-width="2"/>
+            <path d="M0 150 L400 150" stroke="#4a586c" stroke-width="2"/>
+            <g stroke="#3b475a" stroke-width="1.5" opacity=".6">
+              <line x1="40" y1="164" x2="34" y2="225"/>
+              <line x1="150" y1="164" x2="140" y2="225"/>
+              <line x1="260" y1="164" x2="272" y2="225"/>
+              <line x1="360" y1="164" x2="372" y2="225"/>
+            </g>
+          </svg>
+          <span class="play-mark" aria-hidden="true"></span>
+        </div>
+        <div class="card-body">
+          <h3>夜里十点从宾馆出发：一条街的烟火清单</h3>
+          <p>从宾馆后门出发，步行十五分钟走完四条巷子。镜头停下来吃了三次，最后在一家开了二十六年的小馆子里坐到打烊。</p>
+          <div class="tag-row"><span class="tag alt2">路线攻略</span><span class="tag alt">在地风味</span></div>
+          <div class="card-foot">
+            <span class="who"><span class="avatar v3">梨</span>阿梨放映室</span>
+            <div class="actions">
+              <button class="act" data-act="like"><span class="ico">♡</span><span class="num">1420</span></button>
+              <button class="act" data-act="save"><span class="ico">☆</span><span>收藏</span></button>
+              <button class="act" data-act="comment"><span class="ico">✎</span><span>评论</span></button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-cat="人物访谈">
+        <div class="cover">
+          <span class="cover-tag">人物访谈</span>
+          <svg viewBox="0 0 400 225" role="img" aria-label="受访者坐在老沙发上的侧脸剪影">
+            <rect width="400" height="225" fill="#5a4a3c"/>
+            <rect x="0" y="170" width="400" height="55" fill="#403329"/>
+            <circle cx="164" cy="88" r="34" fill="#d2a373"/>
+            <path d="M124 170 q38 -70 80 0" fill="#8f6a48"/>
+            <rect x="96" y="140" width="150" height="40" rx="14" fill="#6d5238"/>
+            <rect x="238" y="96" width="110" height="74" rx="8" fill="#cbbba1" opacity=".85"/>
+            <g stroke="#8a7a63" stroke-width="2" opacity=".7">
+              <line x1="252" y1="118" x2="336" y2="118"/>
+              <line x1="252" y1="136" x2="336" y2="136"/>
+              <line x1="252" y1="154" x2="308" y2="154"/>
+            </g>
+            <circle cx="82" cy="60" r="26" fill="#f2d7a8" opacity=".28"/>
+          </svg>
+          <span class="play-mark" aria-hidden="true"></span>
+        </div>
+        <div class="card-body">
+          <h3>她在这间宾馆工作了二十九年：一次长谈</h3>
+          <p>从服务员到值班经理，她记得每一位长住客的习惯。四十分钟的访谈里，我们只问了一个问题：「你怎么判断一个客人今天累了？」</p>
+          <div class="tag-row"><span class="tag alt3">深度访谈</span><span class="tag">品牌故事</span></div>
+          <div class="card-foot">
+            <span class="who"><span class="avatar v4">顾</span>顾野的镜头</span>
+            <div class="actions">
+              <button class="act" data-act="like"><span class="ico">♡</span><span class="num">2073</span></button>
+              <button class="act" data-act="save"><span class="ico">☆</span><span>收藏</span></button>
+              <button class="act" data-act="comment"><span class="ico">✎</span><span>评论</span></button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-cat="创作幕后">
+        <div class="cover">
+          <span class="cover-tag">创作幕后</span>
+          <svg viewBox="0 0 400 225" role="img" aria-label="摄影器材箱与监视器在房间地面上的摆放">
+            <rect width="400" height="225" fill="#5c5a52"/>
+            <rect x="0" y="158" width="400" height="67" fill="#43413b"/>
+            <rect x="52" y="96" width="104" height="66" rx="8" fill="#2f2e2a"/>
+            <rect x="68" y="112" width="72" height="34" rx="4" fill="#7f8f96"/>
+            <circle cx="212" cy="132" r="30" fill="#2f2e2a"/>
+            <circle cx="212" cy="132" r="18" fill="#8b98a0"/>
+            <circle cx="212" cy="132" r="8" fill="#33414a"/>
+            <rect x="256" y="108" width="98" height="56" rx="6" fill="#d9d3c4"/>
+            <rect x="264" y="116" width="82" height="40" rx="3" fill="#4d5b63"/>
+            <rect x="86" y="60" width="60" height="34" rx="6" fill="#3b3934"/>
+            <circle cx="116" cy="77" r="9" fill="#8b98a0"/>
+          </svg>
+          <span class="play-mark" aria-hidden="true"></span>
+        </div>
+        <div class="card-body">
+          <h3>用一台旧机器拍房间：我们的低成本布光方案</h3>
+          <p>没有轨道、没有大灯，只用两盏台灯和一块反光板，如何在十五平方米的房间里拍出层次。附完整参数与拍摄顺序表。</p>
+          <div class="tag-row"><span class="tag">教程干货</span><span class="tag alt2">器材</span></div>
+          <div class="card-foot">
+            <span class="who"><span class="avatar v5">何</span>何同学在拍</span>
+            <div class="actions">
+              <button class="act" data-act="like"><span class="ico">♡</span><span class="num">1186</span></button>
+              <button class="act" data-act="save"><span class="ico">☆</span><span>收藏</span></button>
+              <button class="act" data-act="comment"><span class="ico">✎</span><span>评论</span></button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-cat="美食烹饪">
+        <div class="cover">
+          <span class="cover-tag">美食烹饪</span>
+          <svg viewBox="0 0 400 225" role="img" aria-label="宾馆早餐厨房里热气腾腾的蒸笼与粥碗">
+            <rect width="400" height="225" fill="#e3d3b6"/>
+            <rect x="0" y="152" width="400" height="73" fill="#c0a681"/>
+            <ellipse cx="130" cy="152" rx="66" ry="14" fill="#f6efe0"/>
+            <rect x="82" y="112" width="96" height="42" rx="6" fill="#e6dcc6"/>
+            <rect x="82" y="104" width="96" height="12" rx="5" fill="#cbb894"/>
+            <g stroke="#fff" stroke-width="3" opacity=".65" fill="none">
+              <path d="M100 96 q10 -18 0 -32"/>
+              <path d="M130 92 q12 -20 0 -36"/>
+              <path d="M160 96 q10 -18 0 -32"/>
+            </g>
+            <ellipse cx="292" cy="152" rx="46" ry="12" fill="#f6efe0"/>
+            <path d="M256 132 q36 -16 72 0 l-8 -34 q-28 -10 -56 0 z" fill="#dfd2b6"/>
+            <circle cx="292" cy="118" r="8" fill="#c98a3f" opacity=".6"/>
+            <rect x="230" y="176" width="126" height="8" rx="4" fill="#a98d68"/>
+          </svg>
+          <span class="play-mark" aria-hidden="true"></span>
+        </div>
+        <div class="card-body">
+          <h3>早上七点的厨房：一碗粥要熬多久才算合格</h3>
+          <p>跟着早餐厨房的师傅从上灶开始，看米、水和火候如何被反复调整。他说这行最难的是「每天都一样好」。</p>
+          <div class="tag-row"><span class="tag alt">匠心手艺</span><span class="tag">美食烹饪</span></div>
+          <div class="card-foot">
+            <span class="who"><span class="avatar v6">周</span>周掌柜说</span>
+            <div class="actions">
+              <button class="act" data-act="like"><span class="ico">♡</span><span class="num">956</span></button>
+              <button class="act" data-act="save"><span class="ico">☆</span><span>收藏</span></button>
+              <button class="act" data-act="comment"><span class="ico">✎</span><span>评论</span></button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-cat="日常记录">
+        <div class="cover">
+          <span class="cover-tag">日常记录</span>
+          <svg viewBox="0 0 400 225" role="img" aria-label="行李员推行李车经过大堂的画面">
+            <rect width="400" height="225" fill="#b9a98f"/>
+            <rect x="0" y="170" width="400" height="55" fill="#8f8069"/>
+            <rect x="30" y="40" width="340" height="130" rx="6" fill="#d3c4a9"/>
+            <g fill="#c0ae90">
+              <rect x="56" y="64" width="80" height="94"/>
+              <rect x="152" y="64" width="46" height="94"/>
+              <rect x="292" y="64" width="56" height="94"/>
+            </g>
+            <rect x="222" y="118" width="52" height="52" rx="5" fill="#8d6a45"/>
+            <rect x="226" y="100" width="44" height="22" rx="4" fill="#a5784c"/>
+            <circle cx="234" cy="176" r="8" fill="#3d3226"/>
+            <circle cx="262" cy="176" r="8" fill="#3d3226"/>
+            <rect x="248" y="108" width="4" height="44" fill="#6d5133"/>
+          </svg>
+          <span class="play-mark" aria-hidden="true"></span>
+        </div>
+        <div class="card-body">
+          <h3>一次入住的三分钟：从推门到放下行李</h3>
+          <p>把镜头固定在门厅，记录二十位客人依次进门的三分钟。有人先找插座，有人先看窗外，有人直接倒在床上。</p>
+          <div class="tag-row"><span class="tag">观察片段</span><span class="tag alt3">真实瞬间</span></div>
+          <div class="card-foot">
+            <span class="who"><span class="avatar">林</span>林间取景</span>
+            <div class="actions">
+              <button class="act" data-act="like"><span class="ico">♡</span><span class="num">764</span></button>
+              <button class="act" data-act="save"><span class="ico">☆</span><span>收藏</span></button>
+              <button class="act" data-act="comment"><span class="ico">✎</span><span>评论</span></button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-cat="城市探索">
+        <div class="cover">
+          <span class="cover-tag">城市探索</span>
+          <svg viewBox="0 0 400 225" role="img" aria-label="从宾馆露台向下看城市河岸与桥">
+            <rect width="400" height="225" fill="#8fa6b3"/>
+            <rect x="0" y="130" width="400" height="95" fill="#5f7f8c"/>
+            <g fill="#4b6570">
+              <rect x="18" y="86" width="44" height="44"/>
+              <rect x="74" y="66" width="34" height="64"/>
+              <rect x="122" y="94" width="52" height="36"/>
+              <rect x="316" y="76" width="42" height="54"/>
+            </g>
+            <path d="M0 168 q100 -34 200 0 q100 34 200 0" fill="none" stroke="#d8e3e8" stroke-width="5"/>
+            <path d="M0 186 q100 -30 200 0 q100 30 200 0" fill="none" stroke="#b7c9d2" stroke-width="3" opacity=".7"/>
+            <g stroke="#3f545c" stroke-width="3">
+              <line x1="180" y1="118" x2="180" y2="166"/>
+              <line x1="222" y1="118" x2="222" y2="166"/>
+              <line x1="160" y1="118" x2="242" y2="118"/>
+            </g>
+            <rect x="0" y="200" width="400" height="25" fill="#42606c"/>
+          </svg>
+          <span class="play-mark" aria-hidden="true"></span>
+        </div>
+        <div class="card-body">
+          <h3>露台上的十五分钟：把一座城看成一帧画面</h3>
+          <p>宾馆顶楼露台对住客开放，每天日落前十五分钟最适合取景。我们试了七个机位，把每个焦段的效果都留在片子里。</p>
+          <div class="tag-row"><span class="tag alt2">机位分享</span><span class="tag">城市探索</span></div>
+          <div class="card-foot">
+            <span class="who"><span class="avatar v3">梨</span>阿梨放映室</span>
+            <div class="actions">
+              <button class="act" data-act="like"><span class="ico">♡</span><span class="num">1032</span></button>
+              <button class="act" data-act="save"><span class="ico">☆</span><span>收藏</span></button>
+              <button class="act" data-act="comment"><span class="ico">✎</span><span>评论</span></button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-cat="创作幕后">
+        <div class="cover">
+          <span class="cover-tag">创作幕后</span>
+          <svg viewBox="0 0 400 225" role="img" aria-label="剪辑室屏幕上的时间线界面">
+            <rect width="400" height="225" fill="#25262b"/>
+            <rect x="24" y="28" width="352" height="120" rx="6" fill="#16171b"/>
+            <g fill="#3c3e46">
+              <rect x="40" y="44" width="132" height="86" rx="3"/>
+            </g>
+            <rect x="40" y="44" width="132" height="86" rx="3" fill="#4f6a7c"/>
+            <rect x="54" y="58" width="104" height="30" rx="2" fill="#8fb3c6" opacity=".8"/>
+            <rect x="54" y="96" width="70" height="20" rx="2" fill="#6d8b9c" opacity=".8"/>
+            <rect x="188" y="44" width="172" height="50" rx="3" fill="#2f3138"/>
+            <g fill="#b5732a">
+              <rect x="196" y="52" width="46" height="8" rx="2"/>
+              <rect x="248" y="52" width="30" height="8" rx="2"/>
+              <rect x="284" y="52" width="66" height="8" rx="2"/>
+            </g>
+            <g fill="#4a4d56">
+              <rect x="188" y="100" width="172" height="30" rx="3"/>
+              <rect x="196" y="106" width="52" height="6" rx="2"/>
+              <rect x="254" y="112" width="36" height="6" rx="2"/>
+              <rect x="296" y="106" width="54" height="6" rx="2"/>
+            </g>
+            <rect x="24" y="160" width="352" height="12" rx="6" fill="#33353d"/>
+            <rect x="24" y="160" width="206" height="12" rx="6" fill="#b5732a"/>
+            <circle cx="230" cy="166" r="8" fill="#f0e2cd"/>
+            <rect x="24" y="186" width="352" height="20" rx="4" fill="#1c1d22"/>
+          </svg>
+          <span class="play-mark" aria-hidden="true"></span>
+        </div>
+        <div class="card-body">
+          <h3>一支三分钟短片的两周：从脚本到调色全流程</h3>
+          <p>把整个项目拆成脚本、勘景、拍摄、剪辑、调色五个阶段，公开时间分配与踩过的坑，适合第一次接商业品牌的创作者。</p>
+          <div class="tag-row"><span class="tag">创作幕后</span><span class="tag alt2">流程拆解</span></div>
+          <div class="card-foot">
+            <span class="who"><span class="avatar v5">何</span>何同学在拍</span>
+            <div class="actions">
+              <button class="act" data-act="like"><span class="ico">♡</span><span class="num">1388</span></button>
+              <button class="act" data-act="save"><span class="ico">☆</span><span>收藏</span></button>
+              <button class="act" data-act="comment"><span class="ico">✎</span><span>评论</span></button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- 专题企划 -->
+  <section class="section topic-section" id="topics">
+    <div class="section-head">
+      <div>
+        <div class="sec-tag">TOPICS · 专题企划</div>
+        <h2>正在更新的<span>三组长线企划</span></h2>
+        <p>每一组专题由编辑与创作者共同维护，持续收集同一主题下的不同讲述方式。</p>
+      </div>
+    </div>
+    <div class="topic-grid">
+      <article class="topic-card">
+        <svg viewBox="0 0 400 300" role="img" aria-label="夜航影像计划专题封面，夜灯与窗格">
+          <rect width="400" height="300" fill="#20293c"/>
+          <g fill="#37455f">
+            <rect x="26" y="52" width="80" height="200"/>
+            <rect x="300" y="76" width="72" height="176"/>
+          </g>
+          <g fill="#e9b96e">
+            <rect x="44" y="82" width="18" height="24"/>
+            <rect x="76" y="130" width="18" height="24"/>
+            <rect x="44" y="182" width="18" height="24"/>
+            <rect x="318" y="108" width="18" height="24"/>
+            <rect x="342" y="164" width="16" height="22"/>
+          </g>
+          <rect x="140" y="70" width="120" height="182" rx="6" fill="#33405a"/>
+          <rect x="158" y="94" width="84" height="62" rx="4" fill="#f3ce8d"/>
+          <circle cx="200" cy="126" r="18" fill="#f9e3b4"/>
+          <rect x="158" y="176" width="84" height="8" rx="4" fill="#546480"/>
+          <rect x="158" y="196" width="56" height="8" rx="4" fill="#546480"/>
+        </svg>
+        <div class="veil"></div>
+        <div class="topic-info">
+          <span class="status">持续更新中</span>
+          <h3>夜航影像计划</h3>
+          <p>邀请创作者在宾馆住一晚，只拍入夜之后的六个小时。灯光、脚步、远方的车流都可以入镜。</p>
+          <span class="count">已上线 18 支 · 本季报名开放</span>
+        </div>
+      </article>
+      <article class="topic-card">
+        <svg viewBox="0 0 400 300" role="img" aria-label="老城房间故事专题封面，旧木门与钥匙">
+          <rect width="400" height="300" fill="#8a6a48"/>
+          <rect x="60" y="40" width="200" height="230" rx="6" fill="#6b4f33"/>
+          <rect x="74" y="56" width="172" height="198" rx="4" fill="#7d5d3c"/>
+          <circle cx="222" cy="156" r="9" fill="#d3a866"/>
+          <g fill="#a98a5e" opacity=".55">
+            <rect x="96" y="86" width="128" height="4"/>
+            <rect x="96" y="106" width="128" height="4"/>
+            <rect x="96" y="126" width="96" height="4"/>
+          </g>
+          <path d="M286 176 a26 26 0 1 1 52 0 a26 26 0 1 1 -52 0" fill="none" stroke="#e6c78e" stroke-width="7"/>
+          <rect x="302" y="200" width="20" height="46" rx="4" fill="#e6c78e"/>
+          <rect x="302" y="228" width="32" height="8" rx="3" fill="#e6c78e"/>
+          <rect x="302" y="242" width="24" height="8" rx="3" fill="#e6c78e"/>
+        </svg>
+        <div class="veil"></div>
+        <div class="topic-info">
+          <span class="status">更新至第 6 集</span>
+          <h3>老城房间故事</h3>
+          <p>每个房间都住过不同的人。我们收集钥匙、登记簿与住客留下的只言片语，把它们拼成短纪录片。</p>
+          <span class="count">已上线 6 支 · 每周四更新</span>
+        </div>
+      </article>
+      <article class="topic-card">
+        <svg viewBox="0 0 400 300" role="img" aria-label="来客故事征集专题封面，信纸与笔">
+          <rect width="400" height="300" fill="#e2d6c1"/>
+          <rect x="46" y="66" width="230" height="170" rx="5" fill="#fbf6ec" transform="rotate(-4 160 150)"/>
+          <g stroke="#c3b39a" stroke-width="3">
+            <line x1="72" y1="110" x2="248" y2="104"/>
+            <line x1="72" y1="136" x2="248" y2="130"/>
+            <line x1="72" y1="162" x2="212" y2="157"/>
+            <line x1="72" y1="188" x2="230" y2="182"/>
+          </g>
+          <path d="M286 92 l58 128 l-104 -44 z" fill="#b5732a" opacity=".9"/>
+          <path d="M286 92 l-46 84 l-14 -18 z" fill="#8a4f16"/>
+          <circle cx="300" cy="248" r="20" fill="#d6c6ad"/>
+          <circle cx="356" cy="228" r="12" fill="#c9b79b"/>
+        </svg>
+        <div class="veil"></div>
+        <div class="topic-info">
+          <span class="status">报名通道开放</span>
+          <h3>来客故事征集</h3>
+          <p>如果你在旅途中拍下过一段值得留下的画面，欢迎上传。入选作品将获得制作支持与官方推荐。</p>
+          <span class="count">已收到 642 份投稿 · 每月评审</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 创作者矩阵 -->
+  <section class="section" id="creators">
+    <div class="section-head">
+      <div>
+        <div class="sec-tag">CREATORS · 创作者矩阵</div>
+        <h2>和我们一起持续创作的<span>四位影像作者</span></h2>
+        <p>他们在旅宿、城市、人物与手工艺方向长期深耕，是内容生态里最值得信赖的伙伴。</p>
+      </div>
+      <a class="link-more" href="#contact">申请加入 →</a>
+    </div>
+    <div class="creator-grid">
+      <article class="creator-card" data-creator="林间取景">
+        <div class="big-avatar" style="background:linear-gradient(135deg,#c98a3f,#8a4f16)">林</div>
+        <h3>林间取景</h3>
+        <div class="field">城市探索 · 日常记录</div>
+        <p>擅长在固定机位里等待偶然发生，作品多为长镜头与自然环境声。曾连续三十天拍摄同一走廊的清晨。</p>
+        <div class="creator-stats">
+          <div><b>48</b>作品</div>
+          <div><b>3.2万</b>关注</div>
+        </div>
+      </article>
+      <article class="creator-card" data-creator="阿梨放映室">
+        <div class="big-avatar" style="background:linear-gradient(135deg,#8a6bb0,#4d3573)">梨</div>
+        <h3>阿梨放映室</h3>
+        <div class="field">在地文化 · 旅行见闻</div>
+        <p>以步行丈量城市，镜头里常有街巷、食物与老人的手。她说拍摄就是替一座城保存体温。</p>
+        <div class="creator-stats">
+          <div><b>63</b>作品</div>
+          <div><b>5.1万</b>关注</div>
+        </div>
+      </article>
+      <article class="creator-card" data-creator="顾野的镜头">
+        <div class="big-avatar" style="background:linear-gradient(135deg,#c46a5a,#8d3a2c)">顾</div>
+        <h3>顾野的镜头</h3>
+        <div class="field">人物访谈 · 品牌故事</div>
+        <p>做过八年纪录片，习惯把机器摆到最不打扰的位置。长期记录普通职业者的工作细节与语言习惯。</p>
+        <div class="creator-stats">
+          <div><b>31</b>作品</div>
+          <div><b>2.7万</b>关注</div>
+        </div>
+      </article>
+      <article class="creator-card" data-creator="何同学在拍">
+        <div class="big-avatar" style="background:linear-gradient(135deg,#4f7fa8,#2c5170)">何</div>
+        <h3>何同学在拍</h3>
+        <div class="field">教程干货 · 创作幕后</div>
+        <p>器材党里的实用派，热衷把复杂流程讲成可复制的步骤。每支片子都附参数表与拍摄清单。</p>
+        <div class="creator-stats">
+          <div><b>74</b>作品</div>
+          <div><b>6.4万</b>关注</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 故事随笔 -->
+  <section class="section story-section" id="stories">
+    <div class="section-head">
+      <div>
+        <div class="sec-tag">NOTES · 旅宿随笔</div>
+        <h2>影像之外，那些<span>被写下来的片刻</span></h2>
+        <p>由创作者与住客共同撰写，记录镜头没有拍到的部分，也记录我们对「陪伴」的理解。</p>
+      </div>
+    </div>
+    <div class="story-grid">
+      <article class="story-card">
+        <div class="quote">“</div>
+        <h3>在四楼靠窗的房间，我第一次把窗帘全拉开</h3>
+        <p>连续出差三个月，我几乎忘了白天是什么样子。那天下午阳光斜着进来，把地毯晒出一块亮斑，我就坐在那儿看了两个小时的街。第二天起床时，我第一次觉得出差不是流放。</p>
+        <div class="by">—— 住客手记 · 一位常旅客</div>
+      </article>
+      <article class="story-card">
+        <div class="quote">“</div>
+        <h3>拍走廊的那三十天，我学会了不去打扰</h3>
+        <p>最初总想安排点什么，后来发现最好的画面都来自不干预。客房服务员推车的节奏、门缝里飘出的电视声、凌晨四点的电梯提示音，它们自己就构成了一部片子。</p>
+        <div class="by">—— 创作者手记 · 林间取景</div>
+      </article>
+      <article class="story-card">
+        <div class="quote">“</div>
+        <h3>老宾馆的意义，可能在于它允许你慢下来</h3>
+        <p>新酒店什么都有，但一切都太快。这里的电梯要等，热水要放一会儿，走廊里能听见脚步。你会发现等待本身也是一种照料，让人重新感觉到身体的节奏。</p>
+        <div class="by">—— 品牌随笔 · 内容编辑部</div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 影像墙 -->
+  <section class="section" id="wall">
+    <div class="section-head">
+      <div>
+        <div class="sec-tag">GALLERY · 影像墙</div>
+        <h2>由社区共同上传的<span>七帧画面</span></h2>
+        <p>来自不同作者的静止影像，与视频内容共同构成这座宾馆的视觉档案。</p>
+      </div>
+      <a class="link-more" href="#contact">上传作品 →</a>
+    </div>
+    <div class="wall">
+      <div class="wall-item w-a">
+        <svg viewBox="0 0 600 260" role="img" aria-label="宾馆大堂挑高空间与吊灯的广角照片">
+          <rect width="600" height="260" fill="#c8b79c"/>
+          <rect x="0" y="190" width="600" height="70" fill="#9d8a70"/>
+          <g>
+            <rect x="90" y="40" width="420" height="150" fill="#d9cbb4"/>
+            <rect x="130" y="66" width="120" height="124" fill="#b3a084"/>
+            <rect x="350" y="66" width="120" height="124" fill="#b3a084"/>
+          </g>
+          <g fill="#f2d9a5">
+            <circle cx="240" cy="74" r="12"/>
+            <circle cx="300" cy="66" r="9"/>
+            <circle cx="360" cy="74" r="12"/>
+          </g>
+          <g stroke="#8d7a5f" stroke-width="3">
+            <line x1="240" y1="20" x2="240" y2="62"/>
+            <line x1="300" y1="12" x2="300" y2="56"/>
+            <line x1="360" y1="20" x2="360" y2="62"/>
+          </g>
+          <ellipse cx="300" cy="214" rx="140" ry="16" fill="#7d6a50" opacity=".6"/>
+        </svg>
+        <span class="cap">大堂 · 挑高与吊灯</span>
+      </div>
+      <div class="wall-item w-b">
+        <svg viewBox="0 0 600 130" role="img" aria-label="客房里叠好的白毛巾与木托盘细节">
+          <rect width="600" height="130" fill="#b9a488"/>
+          <rect x="60" y="30" width="480" height="76" rx="8" fill="#e8dcc6"/>
+          <rect x="110" y="46" width="120" height="44" rx="6" fill="#fdfaf2"/>
+          <rect x="126" y="56" width="88" height="24" rx="4" fill="#f2e8d5"/>
+          <circle cx="360" cy="68" r="24" fill="#d8c9ae"/>
+          <circle cx="360" cy="68" r="13" fill="#b5732a" opacity=".55"/>
+          <rect x="420" y="48" width="70" height="40" rx="5" fill="#c9b898"/>
+        </svg>
+        <span class="cap">客房 · 毛巾细节</span>
+      </div>
+      <div class="wall-item w-c">
+        <svg viewBox="0 0 300 130" role="img" aria-label="门把手与房号的近景特写">
+          <rect width="300" height="130" fill="#6d5a44"/>
+          <rect x="40" y="18" width="220" height="94" rx="6" fill="#846d51"/>
+          <circle cx="150" cy="62" r="20" fill="#d4b073"/>
+          <circle cx="150" cy="62" r="10" fill="#8a6a3d"/>
+          <text x="232" y="52" font-size="22" fill="#e6d3ad" font-family="sans-serif" font-weight="bold">402</text>
+        </svg>
+        <span class="cap">门牌 · 四〇二</span>
+      </div>
+      <div class="wall-item w-d">
+        <svg viewBox="0 0 400 130" role="img" aria-label="清晨窗外街景与树枝投影">
+          <rect width="400" height="130" fill="#cfd9dd"/>
+          <rect x="0" y="96" width="400" height="34" fill="#8fa1a8"/>
+          <g fill="#77898f">
+            <rect x="20" y="52" width="42" height="44"/>
+            <rect x="74" y="34" width="34" height="62"/>
+            <rect x="300" y="44" width="40" height="52"/>
+            <rect x="350" y="62" width="32" height="34"/>
+          </g>
+          <g stroke="#5f6e73" stroke-width="2" fill="none" opacity=".7">
+            <path d="M120 0 q14 40 4 96"/>
+            <path d="M120 40 q24 8 34 26"/>
+            <path d="M120 66 q-22 8 -30 26"/>
+          </g>
+        </svg>
+        <span class="cap">窗外 · 清晨街景</span>
+      </div>
+      <div class="wall-item w-e">
+        <svg viewBox="0 0 400 260" role="img" aria-label="宾馆楼梯间的木质扶手与光影">
+          <rect width="400" height="260" fill="#a08663"/>
+          <g stroke="#7d6448" stroke-width="14" opacity=".8">
+            <line x1="0" y1="220" x2="400" y2="60"/>
+          </g>
+          <g stroke="#5f4b33" stroke-width="8">
+            <line x1="46" y1="212" x2="46" y2="252"/>
+            <line x1="130" y1="184" x2="130" y2="228"/>
+            <line x1="214" y1="156" x2="214" y2="204"/>
+            <line x1="298" y1="128" x2="298" y2="176"/>
+            <line x1="368" y1="102" x2="368" y2="150"/>
+          </g>
+          <polygon points="0,260 400,96 400,150 0,260" fill="#b59a74" opacity=".3"/>
+        </svg>
+        <span class="cap">楼梯 · 扶手光影</span>
+      </div>
+      <div class="wall-item w-f">
+        <svg viewBox="0 0 300 130" role="img" aria-label="茶壶与茶杯在窗边木桌上的静物">
+          <rect width="300" height="130" fill="#d7cdb9"/>
+          <rect x="0" y="94" width="300" height="36" fill="#a58f6c"/>
+          <ellipse cx="130" cy="94" rx="52" ry="10" fill="#c2ac86"/>
+          <path d="M96 92 q6 -46 34 -46 q28 0 34 46 z" fill="#efe6d4"/>
+          <path d="M164 66 q24 -6 20 24" fill="none" stroke="#efe6d4" stroke-width="7"/>
+          <rect x="120" y="40" width="20" height="8" rx="3" fill="#c9b795"/>
+          <ellipse cx="228" cy="90" rx="20" ry="7" fill="#efe6d4"/>
+          <path d="M208 90 q0 -20 20 -20 q20 0 20 20 z" fill="#efe6d4"/>
+        </svg>
+        <span class="cap">茶席 · 窗边静物</span>
+      </div>
+      <div class="wall-item w-g">
+        <svg viewBox="0 0 600 130" role="img" aria-label="夜晚宾馆外立面的灯牌与街道倒影">
+          <rect width="600" height="130" fill="#182031"/>
+          <rect x="0" y="92" width="600" height="38" fill="#22303f"/>
+          <rect x="120" y="24" width="200" height="70" rx="6" fill="#2c3d50"/>
+          <g fill="#f2c179">
+            <rect x="140" y="44" width="24" height="32"/>
+            <rect x="184" y="44" width="24" height="32"/>
+            <rect x="228" y="44" width="24" height="32"/>
+            <rect x="272" y="44" width="24" height="32"/>
+          </g>
+          <rect x="360" y="34" width="120" height="26" rx="5" fill="#c98a3f"/>
+          <text x="420" y="53" font-size="15" fill="#241a10" text-anchor="middle" font-family="sans-serif" font-weight="bold">酒城宾馆</text>
+          <g fill="#c98a3f" opacity=".22">
+            <rect x="368" y="98" width="104" height="26"/>
+            <rect x="140" y="98" width="150" height="22"/>
+          </g>
+        </svg>
+        <span class="cap">夜色 · 外立面灯牌</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 用户评价 -->
+  <section class="section review-section" id="reviews">
+    <div class="section-head">
+      <div>
+        <div class="sec-tag">REVIEWS · 用户评价</div>
+        <h2>来自住客与创作者的<span>七条真实反馈</span></h2>
+        <p>我们把这些话完整保留下来，作为持续改进内容与服务的依据。</p>
+      </div>
+    </div>
+    <div class="review-grid">
+      <article class="review">
+        <div class="stars">★★★★★</div>
+        <p>第一次因为一支短片订了一家宾馆。走廊那支片子看哭了，去了之后发现真实空间比镜头里更安静。拍摄者是真的懂这个地方。</p>
+        <div class="rv-foot"><span class="avatar v2">郑</span><b>郑女士</b> · 上海 · 住客</div>
+      </article>
+      <article class="review">
+        <div class="stars">★★★★★</div>
+        <p>投稿流程比我想的顺畅很多，三天内收到编辑回复，还给了很具体的修改建议，不是那种模板话。这种认真在行业里少见。</p>
+        <div class="rv-foot"><span class="avatar v5">吴</span><b>吴一鸣</b> · 独立创作者</div>
+      </article>
+      <article class="review">
+        <div class="stars">★★★★☆</div>
+        <p>影像内容质量稳定，就是更新节奏有点慢，等专题周更有时候会忘记回来。如果能加上更新提醒就更好了。</p>
+        <div class="rv-foot"><span class="avatar v3">苏</span><b>苏小满</b> · 内容爱好者</div>
+      </article>
+      <article class="review">
+        <div class="stars">★★★★★</div>
+        <p>带着相机去住了一晚，前台知道我是来拍东西的，主动告诉我几点光线最好。这种配合度对创作者太重要了。</p>
+        <div class="rv-foot"><span class="avatar">林</span><b>林间取景</b> · 签约创作者</div>
+      </article>
+      <article class="review">
+        <div class="stars">★★★★☆</div>
+        <p>房间不算大，但干净，隔音也可以。最喜欢的是早餐厅，粥和自制小菜很实在，不是那种摆样子的早餐。</p>
+        <div class="rv-foot"><span class="avatar v6">马</span><b>马先生</b> · 成都 · 商务出行</div>
+      </article>
+      <article class="review">
+        <div class="stars">★★★★★</div>
+        <p>看了「老城房间故事」之后专门绕路住了一晚。房间里留着上一位住客写的便签，这个细节让我觉得被认真对待了。</p>
+        <div class="rv-foot"><span class="avatar v4">沈</span><b>沈之之</b> · 杭州 · 旅行者</div>
+      </article>
+      <article class="review">
+        <div class="stars">★★★★★</div>
+        <p>在这里看到很多不炫技的片子，讲的是普通人的工作和生活。作为同行，我尊重这种克制，也愿意长期关注。</p>
+        <div class="rv-foot"><span class="avatar v2">贺</span><b>贺川</b> · 纪录片摄影师</div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 企业动态与合作伙伴 -->
+  <section class="section" id="news">
+    <div class="section-head">
+      <div>
+        <div class="sec-tag">NEWS · 企业动态</div>
+        <h2>官方发布与<span>持续运营记录</span></h2>
+        <p>关于内容生态、创作者扶持与空间升级的最新进展，均由官方渠道统一发布。</p>
+      </div>
+    </div>
+    <div class="dual-grid">
+      <div class="news-list">
+        <article class="news-item">
+          <span class="date">05 · 18</span>
+          <div>
+            <h3>夜航影像计划第二季开放报名</h3>
+            <p>本季提供 24 个免费房间名额与基础器材支持，创作者需提交一份夜间拍摄提案，报名截止至 6 月 20 日。</p>
+          </div>
+        </article>
+        <article class="news-item">
+          <span class="date">05 · 09</span>
+          <div>
+            <h3>「老城房间故事」专题更新至第六集</h3>
+            <p>本集聚焦 402 房间四十年间的住客更替，结合登记簿影印件与现任客房班组的口述完成。</p>
+          </div>
+        </article>
+        <article class="news-item">
+          <span class="date">04 · 27</span>
+          <div>
+            <h3>五月创作者扶持名单公示</h3>
+            <p>共 12 位作者入选，覆盖城市探索、人物访谈与美食烹饪三个方向，将获得制作补贴与官方推荐位。</p>
+          </div>
+        </article>
+        <article class="news-item">
+          <span class="date">04 · 12</span>
+          <div>
+            <h3>影像体验中心完成第三期空间升级</h3>
+            <p>新增小型放映区与器材借用点，住客与入驻创作者可预约使用，用于粗剪与内部试片。</p>
+          </div>
+        </article>
+        <article class="news-item">
+          <span class="date">03 · 30</span>
+          <div>
+            <h3>「来客故事」征集通道持续开放</h3>
+            <p>面向所有住客征集旅途影像与文字，入选作品将进入年度合辑，并邀请作者参与线下分享。</p>
+          </div>
+        </article>
+      </div>
+      <aside class="partner-box">
+        <h3>合作与共创伙伴</h3>
+        <p>我们与本地文化机构、影像社群及生活方式品牌保持长期合作，共同推动旅宿题材的原创表达。</p>
+        <div class="partner-grid">
+          <div class="partner"><span class="pd"></span>城南影像社</div>
+          <div class="partner"><span class="pd g"></span>老城文化馆</div>
+          <div class="partner"><span class="pd b"></span>胶片实验室</div>
+          <div class="partner"><span class="pd r"></span>街巷食堂</div>
+          <div class="partner"><span class="pd g"></span>晨光书房</div>
+          <div class="partner"><span class="pd"></span>旅宿观察</div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq" style="padding-top:20px">
+    <div class="section-head">
+      <div>
+        <div class="sec-tag">FAQ · 帮助</div>
+        <h2>关于观看、投稿与<span>房间体验的常见问题</span></h2>
+        <p>如果这里没有你想要的答案，欢迎通过页面底部的联系方式与我们沟通。</p>
+      </div>
+    </div>
+    <div class="faq-list">
+      <details open>
+        <summary>如何参与「夜航影像计划」？</summary>
+        <p>在投稿入口提交一份 500 字以内的夜间拍摄提案，说明主题、机位设想与所需时间。编辑部会在十个工作日内回复，通过后可预约免费房间与基础器材支持。</p>
+      </details>
+      <details>
+        <summary>投稿的影像会被如何使用？</summary>
+        <p>作品版权归创作者所有。我们仅在获得授权后用于站内展示与官方渠道推荐，并在片头标注作者信息。商业用途会另行签署协议。</p>
+      </details>
+      <details>
+        <summary>是否支持手机拍摄的作品？</summary>
+        <p>支持。我们更看重讲述的完整度与观察的独特性，而非器材规格。过往入选作品中约有三分之一使用手机完成。</p>
+      </details>
+      <details>
+        <summary>影像体验中心需要预约吗？</summary>
+        <p>需要。住客可在前台登记预约，入驻创作者可通过创作者后台申请。放映区单次使用时长不超过三小时。</p>
+      </details>
+      <details>
+        <summary>如何加入创作者矩阵？</summary>
+        <p>连续投稿两支以上并通过评审，或由现有创作者推荐，均可进入候选名单。我们每季度集中评估一次。</p>
+      </details>
+      <details>
+        <summary>页面上的内容多久更新一次？</summary>
+        <p>视频内容每周更新，专题企划按项目周期推进，企业动态通常在每个月的上旬与中旬发布。</p>
+      </details>
+      <details>
+        <summary>可以带团队来拍摄吗？</summary>
+        <p>可以，但需提前报备人数与设备清单。涉及公共区域长时间占用时，我们会协调拍摄时段以避免打扰其他住客。</p>
+      </details>
+      <details>
+        <summary>有哪些合作方式？</summary>
+        <p>包括内容共创、空间联合企划、线下放映与品牌联名展览。具体可在联系板块留言，我们会安排对应同事对接。</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- 联系与投稿 -->
+  <section class="section cta-section" id="contact">
+    <div class="cta-box">
+      <div>
+        <h2>把你的故事留在酒城宾馆</h2>
+        <p>无论你是一晚的住客，还是长期记录城市的创作者，这里都为你保留一个位置。投稿、合作、反馈，都可以从一次对话开始。</p>
+        <div class="cta-actions">
+          <button class="btn-light" data-modal="submitModal">提交投稿</button>
+          <button class="btn-outline" data-modal="shareModal">分享给朋友</button>
+        </div>
+      </div>
+      <div class="contact-list">
+        <div class="contact-row">
+          <span class="ci">✉</span>
+          <div><b>内容合作邮箱</b><span>content@jiucheng-hotel.example</span></div>
+        </div>
+        <div class="contact-row">
+          <span class="ci">☎</span>
+          <div><b>住客服务热线</b><span>工作日 09:00 - 21:00 提供人工接听</span></div>
+        </div>
+        <div class="contact-row">
+          <span class="ci">◈</span>
+          <div><b>影像体验中心</b><span>宾馆一层东侧 · 住客与创作者可预约使用</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- 页脚 -->
+<footer class="site-footer">
+  <div class="foot-wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="logo" href="#top">
+          <span class="logo-mark">酒</span>
+          <span>酒城宾馆</span>
+        </a>
+        <p>酒城宾馆官方网站，持续运营的城市记忆影像社区。我们以原创影像记录旅宿日常与在地文化，搭建专业、多元、值得信赖的内容生态，让每一次停留被认真对待。</p>
+      </div>
+      <div class="foot-col">
+        <h4>内容</h4>
+        <ul>
+          <li><a href="#focus">焦点影像</a></li>
+          <li><a href="#videos">视频内容</a></li>
+          <li><a href="#topics">专题企划</a></li>
+          <li><a href="#wall">影像墙</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>社区</h4>
+        <ul>
+          <li><a href="#creators">创作者矩阵</a></li>
+          <li><a href="#stories">旅宿随笔</a></li>
+          <li><a href="#reviews">用户评价</a></li>
+          <li><a href="#" data-modal="submitModal">我要投稿</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>支持</h4>
+        <ul>
+          <li><a href="#news">企业动态</a></li>
+          <li><a href="#faq">常见问题</a></li>
+          <li><a href="#contact">联系我们</a></li>
+          <li><a href="#" data-modal="reportModal">反馈建议</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="lhs">
+        <span>© 2024 酒城宾馆 官方网站 · 版权所有</span>
+        <span>持续运营中 · 备案号占位</span>
+      </div>
+      <div>内容均为原创 · 转载请注明出处</div>
+    </div>
+  </div>
+</footer>
+
+<!-- 回到顶部 -->
+<button class="to-top" id="toTop" aria-label="回到顶部">↑</button>
+
+<!-- Toast -->
+<div class="toast" id="toast">已完成</div>
+
+<!-- 投稿弹窗 -->
+<div class="modal-mask" id="submitModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="投稿表单">
+    <h3>提交你的影像提案</h3>
+    <p class="sub">请简单描述你想拍的内容与画面。编辑部会在十个工作日内通过邮件回复。</p>
+    <div class="field">
+      <label for="subName">你的称呼</label>
+      <input id="subName" type="text" placeholder="例如：林间取景">
+    </div>
+    <div class="field">
+      <label for="subMail">联系邮箱</label>
+      <input id="subMail" type="email" placeholder="用于接收回复">
+    </div>
+    <div class="field">
+      <label for="subIdea">拍摄提案</label>
+      <textarea id="subIdea" rows="4" placeholder="主题、机位设想、预计时长……"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="m-cancel" data-close="submitModal">取消</button>
+      <button class="m-ok" id="submitOk">提交提案</button>
+    </div>
+  </div>
+</div>
+
+<!-- 分享弹窗 -->
+<div class="modal-mask" id="shareModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="分享面板">
+    <h3>分享这份影像清单</h3>
+    <p class="sub">把酒城宾馆的原创内容推荐给同样喜欢记录的朋友。</p>
+    <div class="share-row">
+      <button class="share-item" data-share="微信"><span class="si">✆</span>微信</button>
+      <button class="share-item" data-share="微博"><span class="si">◎</span>微博</button>
+      <button class="share-item" data-share="QQ"><span class="si">✧</span>QQ</button>
+      <button class="share-item" data-share="朋友圈"><span class="si">❋</span>朋友圈</button>
+    </div>
+    <div class="copy-line">
+      <input id="shareLink" type="text" readonly value="酒城宾馆官方网站 · 城市记忆影像社区">
+      <button class="copy-btn" id="copyBtn">复制</button>
+    </div>
+    <div class="modal-actions">
+      <button class="m-cancel" data-close="shareModal">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 反馈弹窗 -->
+<div class="modal-mask" id="reportModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="反馈建议">
+    <h3>反馈与建议</h3>
+    <p class="sub">无论是内容质量、页面体验还是房间服务，都欢迎直接告诉我们。</p>
+    <div class="field">
+      <label for="repText">你的反馈</label>
+      <textarea id="repText" rows="4" placeholder="请描述你遇到的问题或建议"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="m-cancel" data-close="reportModal">取消</button>
+      <button class="m-ok" id="reportOk">提交反馈</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- 提示 ---------- */
+  var toast = document.getElementById('toast');
+  var toastTimer = null;
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 2200);
+  }
+
+  /* ---------- 移动端导航 ---------- */
+  var menuToggle = document.getElementById('menuToggle');
+  var mainNav = document.getElementById('mainNav');
+  menuToggle.addEventListener('click', function(){
+    var open = mainNav.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menuToggle.textContent = open ? '✕' : '☰';
+  });
+  mainNav.addEventListener('click', function(e){
+    if(e.target.tagName === 'A'){
+      mainNav.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded','false');
+      menuToggle.textContent = '☰';
+    }
+  });
+
+  /* ---------- 搜索反馈 ---------- */
+  var searchInput = document.getElementById('searchInput');
+  var searchBtn = document.getElementById('searchBtn');
+  var searchFeedback = document.getElementById('searchFeedback');
+  var feedbackTimer = null;
+  function doSearch(){
+    var val = searchInput.value.trim();
+    if(!val){
+      searchFeedback.textContent = '请输入关键词后再搜索';
+    }else{
+      var pool = ['焦点影像','视频内容','专题企划','创作者','旅宿随笔','企业动态'];
+      var hit = pool.filter(function(x){ return x.indexOf(val) > -1; });
+      searchFeedback.textContent = hit.length
+        ? '为你找到「' + val + '」相关内容，已定位到 ' + hit[0]
+        : '暂无完全匹配「' + val + '」的条目，可试试：走廊 / 夜航 / 老城 / 创作者';
+      if(hit.length){
+        showToast('正在为你定位相关内容');
+      }
+    }
+    searchFeedback.classList.add('show');
+    clearTimeout(feedbackTimer);
+    feedbackTimer = setTimeout(function(){ searchFeedback.classList.remove('show'); }, 3000);
+  }
+  searchBtn.addEventListener('click', doSearch);
+  searchInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); doSearch(); }
+  });
+
+  /* ---------- 标签筛选 ---------- */
+  var filterRow = document.getElementById('filterRow');
+  var videoGrid = document.getElementById('videoGrid');
+  filterRow.addEventListener('click', function(e){
+    var btn = e.target.closest('.chip');
+    if(!btn) return;
+    filterRow.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('active'); });
+    btn.classList.add('active');
+    var f = btn.getAttribute('data-filter');
+    videoGrid.querySelectorAll('.card').forEach(function(card){
+      var show = (f === 'all') || (card.getAttribute('data-cat') === f);
+      card.style.display = show ? '' : 'none';
+    });
+  });
+
+  /* ---------- 点赞 / 收藏 ---------- */
+  videoGrid.addEventListener('click', function(e){
+    var act = e.target.closest('.act');
+    if(!act) return;
+    var type = act.getAttribute('data-act');
+    if(type === 'like'){
+      var numEl = act.querySelector('.num');
+      var ico = act.querySelector('.ico');
+      var n = parseInt(numEl.textContent, 10) || 0;
+      if(act.classList.contains('liked')){
+        act.classList.remove('liked');
+        ico.textContent = '♡';
+        numEl.textContent = (n - 1);
+      }else{
+        act.classList.add('liked');
+        ico.textContent = '♥';
+        numEl.textContent = (n + 1);
+        showToast('已记录你的喜欢');
+      }
+    }else if(type === 'save'){
+      if(act.classList.contains('saved')){
+        act.classList.remove('saved');
+        act.querySelector('.ico').textContent = '☆';
+        showToast('已取消收藏');
+      }else{
+        act.classList.add('saved');
+        act.querySelector('.ico').textContent = '★';
+        showToast('已收藏到你的清单');
+      }
+    }else if(type === 'comment'){
+      var title = act.closest('.card').querySelector('h3').textContent;
+      showToast('评论区已为你打开：' + title.slice(0, 12) + '…');
+    }
+  });
+
+  /* ---------- 弹窗通用 ---------- */
+  function openModal(id){
+    var m = document.getElementById(id);
+    if(m) m.classList.add('open');
+  }
+  function closeModal(id){
+    var m = document.getElementById(id);
+    if(m) m.classList.remove('open');
+  }
+  document.querySelectorAll('[data-modal]').forEach(function(el){
+    el.addEventListener('click', function(e){
+      e.preventDefault();
+      openModal(el.getAttribute('data-modal'));
+    });
+  });
+  document.querySelectorAll('[data-close]').forEach(function(el){
+    el.addEventListener('click', function(){
+      closeModal(el.getAttribute('data-close'));
+    });
+  });
+  document.querySelectorAll('.modal-mask').forEach(function(mask){
+    mask.addEventListener('click', function(e){
+      if(e.target === mask) mask.classList.remove('open');
+    });
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+      document.querySelectorAll('.modal-mask.open').forEach(function(m){ m.classList.remove('open'); });
+    }
+  });
+
+  /* ---------- 投稿提交 ---------- */
+  document.getElementById('submitOk').addEventListener('click', function(){
+    var name = document.getElementById('subName').value.trim();
+    var mail = document.getElementById('subMail').value.trim();
+    var idea = document.getElementById('subIdea').value.trim();
+    if(!name || !mail || !idea){
+      showToast('请把称呼、邮箱与提案填写完整');
+      return;
+    }
+    if(mail.indexOf('@') === -1){
+      showToast('邮箱格式看起来不太对');
+      return;
+    }
+    closeModal('submitModal');
+    showToast('提案已提交，我们会尽快回复你');
+    document.getElementById('subName').value = '';
+    document.getElementById('subMail').value = '';
+    document.getElementById('subIdea').value = '';
+  });
+
+  /* ---------- 反馈提交 ---------- */
+  document.getElementById('reportOk').addEventListener('click', function(){
+    var t = document.getElementById('repText').value.trim();
+    if(!t){
+      showToast('请先写下你的反馈内容');
+      return;
+    }
+    closeModal('reportModal');
+    showToast('感谢反馈，我们已收到');
+    document.getElementById('repText').value = '';
+  });
+
+  /* ---------- 分享 & 复制 ---------- */
+  var shareLink = document.getElementById('shareLink');
+  document.querySelectorAll('.share-item').forEach(function(el){
+    el.addEventListener('click', function(){
+      showToast('已生成' + el.getAttribute('data-share') + '分享卡片');
+    });
+  });
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    var text = shareLink.value;
+    function fallback(){
+      shareLink.select();
+      try{
+        document.execCommand('copy');
+        showToast('内容已复制到剪贴板');
+      }catch(err){
+        showToast('复制失败，请手动选择文本');
+      }
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){
+        showToast('内容已复制到剪贴板');
+      }).catch(fallback);
+    }else{
+      fallback();
+    }
+  });
+
+  /* ---------- 创作者卡片 ---------- */
+  document.querySelectorAll('.creator-card').forEach(function(card){
+    card.addEventListener('click', function(){
+      var name = card.getAttribute('data-creator') || '这位创作者';
+      showToast('正在打开「' + name + '」的作者档案');
+    });
+  });
+
+  /* ---------- 数据滚动 ---------- */
+  var counted = false;
+  function runCount(){
+    if(counted) return;
+    counted = true;
+    document.querySelectorAll('[data-count]').forEach(function(el){
+      var target = parseInt(el.getAttribute('data-count'), 10);
+      var start = 0;
+      var dur = 1200;
+      var t0 = null;
+      function step(t){
+        if(!t0) t0 = t;
+        var p = Math.min((t - t0) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.floor(start + (target - start) * eased).toLocaleString('zh-CN');
+        if(p < 1) requestAnimationFrame(step);
+        else el.textContent = target.toLocaleString('zh-CN');
+      }
+      requestAnimationFrame(step);
+    });
+  }
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ runCount(); io.disconnect(); }
+      });
+    }, {threshold:.4});
+    var stats = document.querySelector('.hero-stats');
+    if(stats) io.observe(stats);
+  }else{
+    runCount();
+  }
+
+  /* ---------- 回到顶部 ---------- */
+  var toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 620) toTop.classList.add('show');
+    else toTop.classList.remove('show');
+  }, {passive:true});
+  toTop.addEventListener('click', function(){
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+})();
+</script>
+</body>
+                </html>
